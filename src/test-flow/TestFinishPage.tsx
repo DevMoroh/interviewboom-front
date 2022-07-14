@@ -48,7 +48,7 @@ export function TestFinishPage() {
         setCounters({
           count: sessionQuestions.length,
           correctAnswered: sessionQuestions.filter(
-            (question) => !question.is_answered
+            (question) => question.is_answered
           ).length,
         });
       });
