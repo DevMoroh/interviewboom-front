@@ -52,7 +52,7 @@ export function TestFinishPage() {
           ).length,
         });
       });
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <FinishContent>

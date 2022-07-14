@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 const Overlay = styled.div`
@@ -139,9 +139,9 @@ export function PopupLike({
             onClick={() => onClose()}
             className="title-block-item close-item"
           >
-            <a className="close" href="#">
+            <button className="close">
               &times;
-            </a>
+            </button>
           </div>
         </div>
         <div className="content">
@@ -152,7 +152,7 @@ export function PopupLike({
             placeholder="input your name"
           />
 
-          <button onClick={onSend} className="button-9" role="button">
+          <button onClick={onSend} className="button-9">
             Send like
           </button>
         </div>

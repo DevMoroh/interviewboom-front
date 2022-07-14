@@ -2,7 +2,6 @@ import { AxiosResponse } from "axios";
 import { getBaseAPIUrl } from "../../../config";
 import axiosInstance from "../../../services/api";
 import {
-  sendAnswers,
   SendAnswersData,
   TestFlowData,
 } from "../slices/test-flow.slice";
