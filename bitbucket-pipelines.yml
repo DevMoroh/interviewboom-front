@@ -1,0 +1,38 @@
+image: node:16
+
+pipelines:
+  custom: # Pipelines that can only be triggered manually
+    production:
+      - step:
+          name: Installing & Running Tests
+          caches:
+            - node
+          script:
+            - npm install
+      - step:
+          name: Build
+          script:
+            - npm install
+            - REACT_APP_ENVIRONMENT=production npm run build
+          artifacts:
+            - build/**
+      - step:
+          name: Deploy to S3
+          deployment: production
+          script:
+            - pipe: atlassian/aws-s3-deploy:0.2.4
+              variables:
+                AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                S3_BUCKET: $AWS_BUCKET_NAME
+                LOCAL_PATH: "build"
+      - step:
+          name: Invalidate Cloudfront Cache
+          script:
+            - pipe: atlassian/aws-cloudfront-invalidate:0.1.1
+              variables:
+                AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                DISTRIBUTION_ID: $AWS_DISTRIBUTION_ID
