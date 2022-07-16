@@ -30,6 +30,17 @@ const Input = styled.input`
   margin-right: 15px;
 `;
 
+const NextButton = styled.button`
+  background: linear-gradient(45deg, transparent, #ff013c 0%);
+  border: 0;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 20px;
+  width: 100px;
+  height: 46px;
+  outline: transparent;
+`;
+
 export function TestFlow() {
   const [question, setQuestion] = useState<Question>();
   const [answers, setAnswers] = useState<Answer[]>([]);
@@ -152,7 +163,7 @@ export function TestFlow() {
         </ul>
       </div>
       <div>
-        <button onClick={() => handleSendAnswers()}>Done</button>
+        <NextButton onClick={() => handleSendAnswers()}>Done</NextButton>
       </div>
     </TestContent>
   );

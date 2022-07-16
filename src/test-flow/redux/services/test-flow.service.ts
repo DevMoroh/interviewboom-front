@@ -1,10 +1,7 @@
 import { AxiosResponse } from "axios";
 import { getBaseAPIUrl } from "../../../config";
 import axiosInstance from "../../../services/api";
-import {
-  SendAnswersData,
-  TestFlowData,
-} from "../slices/test-flow.slice";
+import { SendAnswersData, TestFlowData } from "../slices/test-flow.slice";
 
 export type TestFlow = {
   id?: string;
@@ -37,6 +34,7 @@ export type TestResults = {
   sessionAnswers: { answer_id: number; is_correct: boolean }[];
   sessionQuestions: SessionQuestion[];
   testId: number;
+  test: string;
 };
 
 // const getBaseUrlQuestions = (sessionId: number) =>

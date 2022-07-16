@@ -139,9 +139,7 @@ export function PopupLike({
             onClick={() => onClose()}
             className="title-block-item close-item"
           >
-            <button className="close">
-              &times;
-            </button>
+            <button className="close">&times;</button>
           </div>
         </div>
         <div className="content">
