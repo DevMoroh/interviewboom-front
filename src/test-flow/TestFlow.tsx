@@ -144,6 +144,14 @@ export function TestFlow() {
         <div>
           <p dangerouslySetInnerHTML={{ __html: question.question }} />
         </div>
+        <div>
+          <br />
+          <p>
+            {question.is_multiselect
+              ? "Select multiple answers"
+              : "Select one answer"}
+          </p>
+        </div>
       </div>
       <div>
         <ul>

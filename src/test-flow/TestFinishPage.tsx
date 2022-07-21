@@ -40,6 +40,7 @@ const TextQuestion = styled.div`
 export function TestFinishPage() {
   const [resultQuestions, setResultQuestions] = useState<SessionQuestion[]>([]);
   const [testTitle, setTestTitle] = useState("");
+  const [testId, setTestId] = useState<number>();
 
   const { loading } = useAppSelector((state) => state.testFlow);
 
@@ -53,7 +54,11 @@ export function TestFinishPage() {
   useEffect(() => {
     dispatch(getTestReport(sessionId!))
       .unwrap()
-      .then(({ sessionQuestions, test }) => {
+      .then(({ sessionQuestions, test, test_id }) => {
+        if (!sessionQuestions) {
+          return;
+        }
+        setTestId(test_id);
         setResultQuestions(sessionQuestions);
         setCounters({
           count: sessionQuestions.length,
@@ -100,7 +105,7 @@ export function TestFinishPage() {
         </p>
       </div>
       <div>
-        <StartTest text="Try again" />
+        <StartTest text="Try again" testId={testId} />
       </div>
       {wrongAnsweredQuestions.length > 0 ? (
         <WrongAnsweredBlock>

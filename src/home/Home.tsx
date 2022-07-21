@@ -10,6 +10,7 @@ import {
 } from "../components/home";
 
 import { StartTest } from "../components/start-testing/StartTest";
+import { useSearchParams } from "react-router-dom";
 
 const Content = styled.div`
   display: flex;
@@ -19,6 +20,9 @@ const Content = styled.div`
 `;
 
 export function Home() {
+  const [searchParams] = useSearchParams();
+  const testIdParam = searchParams.get("startFromTestId");
+
   return (
     <Content>
       <TitleContent>
@@ -39,7 +43,11 @@ export function Home() {
         </ImgBlockText>
       </ImgBlock>
 
-      <StartTest text="start testing" />
+      <StartTest
+        text="start testing"
+        testId={testIdParam ? +testIdParam : undefined}
+        startSessionImmediately={true}
+      />
     </Content>
   );
 }

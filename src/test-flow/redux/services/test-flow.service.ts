@@ -33,7 +33,7 @@ export type SessionQuestion = {
 export type TestResults = {
   sessionAnswers: { answer_id: number; is_correct: boolean }[];
   sessionQuestions: SessionQuestion[];
-  testId: number;
+  test_id: number;
   test: string;
 };
 
