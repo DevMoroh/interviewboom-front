@@ -58,7 +58,7 @@ export function TestFlow() {
   const getNext = (sessionId: string) => {
     dispatch(getNextQuestion(sessionId))
       .unwrap()
-      .then(({ question, count, countAnswered }) => {
+      .then(({ question, count, countAnswered, test_id }) => {
         if (count === countAnswered) {
           navigate(`/testing/${sessionId}/completed`);
         }
@@ -67,7 +67,7 @@ export function TestFlow() {
         setCounters((prevState) => {
           return { ...prevState, count, countAnswered };
         });
-        return question;
+        return { ...question, test_id };
       })
       .then(({ test_id, id }) => {
         return dispatch(

@@ -38,7 +38,7 @@ export const startTestSession = createAsyncThunk<
 });
 
 export const getNextQuestion = createAsyncThunk<
-  { question: Question; count: number; countAnswered: number },
+  { question: Question; count: number; countAnswered: number; test_id: number },
   string,
   { rejectValue: FetchError }
 >("get/next-question", async (sessionId, { rejectWithValue }) => {
